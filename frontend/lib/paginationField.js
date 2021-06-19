@@ -17,8 +17,8 @@ export default function paginationField() {
       const items = existing.slice(skip, skip + first).filter((x) => x);
       // If
       // There are items
-      //  AND there aren't enough items to satisfy how many we requested
-      // AND we are on the last page
+      //   AND there aren't enough items to satisfy how many we requested
+      //   AND we are on the last page
       // THEN JUST SENT IT
       if (items.length && items.length !== first && page === pages) {
         return items;
