@@ -9,6 +9,9 @@ import { User } from './schemas/User';
 import { Product } from './schemas/Product';
 import { ProductImage } from './schemas/ProductImage';
 import { insertSeedData } from './seed-data';
+import { sendUserPasswordResetEmail } from './lib/mail';
+import { extendGraphqlSchema } from './mutations';
+import { CartItem } from './schemas/CartItem';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-sick-fits-tutorial';
@@ -25,6 +28,12 @@ const { withAuth } = createAuth({
   initFirstItem: {
     fields: ['name', 'email', 'password'],
     // TODO: Add in inital roles here
+  },
+  passwordResetLink: {
+    async sendToken(args) {
+      // send the email
+      await sendUserPasswordResetEmail(args.token, args.identity);
+    },
   },
 });
 
@@ -53,7 +62,9 @@ export default withAuth(
       User,
       Product,
       ProductImage,
+      CartItem,
     }),
+    extendGraphqlSchema,
     ui: {
       // Show the UI only for those who pass the test
       isAccessAllowed: ({ session }) => !!session?.data,
