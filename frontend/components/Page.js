@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
+import { useRef } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
+import useOutsideAlerter from '../lib/OutsideCartClick';
 import Header from './Header';
 
 const GlobalStyles = createGlobalStyle`
@@ -53,11 +55,13 @@ const InnerStyles = styled.div`
   padding: 2rem;
 `;
 
-export default function Page({ children, cool }) {
+export default function Page({ children }) {
+  const cartRef = useRef();
+
   return (
     <div>
       <GlobalStyles />
-      <Header />
+      <Header cartRef={cartRef} />
       <InnerStyles>{children}</InnerStyles>
     </div>
   );

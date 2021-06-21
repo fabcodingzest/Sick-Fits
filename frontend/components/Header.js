@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styled from 'styled-components';
+import Cart from './Cart';
 import Nav from './Nav';
 
 const Logo = styled.h1`
@@ -23,7 +24,7 @@ const HeaderStyles = styled.header`
     display: grid;
     grid-template-columns: auto 1fr;
     justify-content: center;
-    align-items: stretch; 
+    align-items: stretch;
   }
 
   .sub-bar {
@@ -33,7 +34,7 @@ const HeaderStyles = styled.header`
   }
 `;
 
-export default function Header() {
+export default function Header({ cartRef }) {
   return (
     <HeaderStyles>
       <div className="bar">
@@ -45,6 +46,7 @@ export default function Header() {
       <div className="sub-bar">
         <p>Search</p>
       </div>
+      <Cart cartRef={cartRef} />
     </HeaderStyles>
   );
 }
