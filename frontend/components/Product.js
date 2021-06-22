@@ -7,6 +7,7 @@ import DeleteProduct from './DeleteProduct';
 import AddToCart from './AddToCart';
 
 export default function Product({ product }) {
+  
   return (
     <ItemStyles>
       <img

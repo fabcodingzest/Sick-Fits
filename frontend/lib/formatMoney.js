@@ -1,16 +1,15 @@
 export default function FormatMoney(amount = 0) {
   const options = {
     style: 'currency',
-    currency: 'USD',
+    currency: 'INR',
     minimumFractionDigits: 2,
   };
 
   // check if its a clean dollar amount
-  if (amount % 100 === 0) {
-    options.minimumFractionDigits = 0;
-  }
+  // if (amount % 100 === 0) {
+  //   options.minimumFractionDigits = 0;
+  // }
+  const formatter = Intl.NumberFormat('en-IN', options);
 
-  const formatter = Intl.NumberFormat('en-US', options);
-
-  return formatter.format(amount / 100);
+  return formatter.format(amount).replace(/\.00$/, '');
 }

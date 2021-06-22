@@ -45,7 +45,7 @@ export default function paginationField() {
     merge(existing, incoming, { args }) {
       const { skip, first } = args;
       // This runs when the Appolo client comes back from the network with our products
-      console.log(`Merging items from the network: ${incoming.length}`);
+      // console.log(`Merging items from the network: ${incoming.length}`);
       //   console.log(incoming);
       const merged = existing ? existing.slice(0) : [];
       for (let i = skip; i < skip + incoming.length; ++i) {

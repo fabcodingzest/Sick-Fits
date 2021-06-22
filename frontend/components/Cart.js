@@ -9,6 +9,7 @@ import calcTotalPrice from '../lib/calcTotalPrice';
 import { useCart } from '../lib/CartState';
 import RemoveItem from './RemoveItem';
 import useOutsideAlerter from '../lib/OutsideCartClick';
+import { Checkout } from './Checkout';
 
 const CartItemStyles = styled.li`
   padding: 1rem 0;
@@ -64,7 +65,10 @@ export default function Cart({ cartRef }) {
           <CartItem key={cartItem.id} cartItem={cartItem} />
         ))}
       </ul>
-      <footer>{formatMoney(calcTotalPrice(me.cart))}</footer>
+      <footer>
+        {formatMoney(calcTotalPrice(me.cart))}
+        <Checkout />
+      </footer>
     </CartStyles>
   );
 }
