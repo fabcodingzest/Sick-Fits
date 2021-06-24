@@ -54,8 +54,8 @@ async function checkout(
     const cartItems = user.cart.filter(cartItem => cartItem.product);
     const amount = cartItems.reduce(function (tally: number, cartItem: CartItemCreateInput): number {
         return tally + cartItem.quantity * cartItem.product.price;
-    }, 0)
-    console.log(typeof amount);
+    }, 0);
+    
     
     // 3. Create the charge with the stripe library
     const charge = await stripeConfig.paymentIntents.create({
@@ -69,12 +69,17 @@ async function checkout(
     })
     console.log(charge)
     // 4. Convert the cartItems to OrderItems
+    console.log("------------------------------------------------------------");
+    console.log("************************************************************");
+    console.log(cartItems)
+    console.log("************************************************************");
+    console.log("------------------------------------------------------------");
     const orderItems = cartItems.map(cartItem => {
         const orderItem = {
           name: cartItem.product.name,
           description: cartItem.product.description,
           price: cartItem.product.price,
-          quantity: cartItem.product.quantity,
+          quantity: cartItem.quantity,
           photo: { connect: { id: cartItem.product.photo.id } },
         };
         return orderItem;

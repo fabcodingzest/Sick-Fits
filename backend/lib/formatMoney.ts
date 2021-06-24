@@ -3,7 +3,7 @@ const formatter = new Intl.NumberFormat('en-IN', {
   currency: 'INR',
 });
 
-export default function formatMoney(rupees: number): string {
-  // const dollars = rupees / 100;
+export default function formatMoney(paisa: number): string {
+  const rupees = paisa / 100;
   return formatter.format(rupees);
 }
