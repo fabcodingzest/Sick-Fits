@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { useRef } from 'react';
 import CartStyles from './styles/CartStyles';
 import CloseButton from './styles/CloseButton';
 import Supreme from './styles/Supreme';
