@@ -15,7 +15,7 @@ import { CartItem } from './schemas/CartItem';
 import { Role } from './schemas/Role';
 import { Order } from './schemas/Order';
 import { OrderItem } from './schemas/OrderItem';
-import { permissionsList } from './schemas/field';
+import { permissionsList } from './schemas/fields';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-sick-fits-tutorial';

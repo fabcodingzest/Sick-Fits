@@ -1,6 +1,6 @@
 // At it's simpleest, the access control return a yes or no value depending on the user session
 
-import { permissionsList } from './schemas/field';
+import { permissionsList } from './schemas/fields';
 import { ListAccessArgs } from './types';
 
 export function isSignedIn({ session }: ListAccessArgs): boolean {
@@ -24,7 +24,9 @@ export const permissions = {
 // Rule based functions
 //  Rules can return a boolean - yes or no - or filter which limits whcih products they can crud
 export const rules = {
-  canManageProducts({ session }: ListAccessArgs) {
+  canManageProducts({
+    session,
+  }: ListAccessArgs): boolean | Record<string, unknown> {
     if (!isSignedIn({ session })) {
       return false;
     }
@@ -35,7 +37,7 @@ export const rules = {
     // 2. If not, do they own this item
     return { user: { id: session.itemId } };
   },
-  canOrder({ session }: ListAccessArgs) {
+  canOrder({ session }: ListAccessArgs): boolean | Record<string, unknown> {
     if (!isSignedIn({ session })) {
       return false;
     }
@@ -46,7 +48,9 @@ export const rules = {
     // 2. If not, do they own this item
     return { user: { id: session.itemId } };
   },
-  canManageOrderItems({ session }: ListAccessArgs) {
+  canManageOrderItems({
+    session,
+  }: ListAccessArgs): boolean | Record<string, unknown> {
     if (!isSignedIn({ session })) {
       return false;
     }
@@ -57,7 +61,9 @@ export const rules = {
     // 2. If not, do they own this item
     return { order: { user: { id: session.itemId } } };
   },
-  canReadProducts({ session }: ListAccessArgs) {
+  canReadProducts({
+    session,
+  }: ListAccessArgs): boolean | Record<string, unknown> {
     if (!isSignedIn({ session })) {
       return false;
     }
@@ -67,7 +73,9 @@ export const rules = {
     //   They should only see available products (based on status field)
     return { status: 'AVAILABLE' };
   },
-  canManageUsers({ session }: ListAccessArgs) {
+  canManageUsers({
+    session,
+  }: ListAccessArgs): boolean | Record<string, unknown> {
     if (!isSignedIn({ session })) {
       return false;
     }

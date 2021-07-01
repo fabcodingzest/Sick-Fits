@@ -1,7 +1,7 @@
 import { relationship, text } from '@keystone-next/fields';
 import { list } from '@keystone-next/keystone/schema';
 import { permissions } from '../access';
-import { permissionFields } from './field';
+import { permissionFields } from './fields';
 
 export const Role = list({
   access: {
